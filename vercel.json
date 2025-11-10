@@ -6,6 +6,7 @@
   "devCommand": "npm run dev",
   "outputDirectory": "dist",
   "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/(.*\\..*)", "dest": "/$1" },
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
