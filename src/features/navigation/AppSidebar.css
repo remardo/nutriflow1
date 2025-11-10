@@ -1,0 +1,133 @@
+
+.SidebarRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.Sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Sidebar-logo-glyph {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 0 0, #38bdf8, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0f172a;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.9);
+}
+
+.Sidebar-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.Sidebar-logo-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.Sidebar-logo-sub {
+  font-size: 8px;
+  color: var(--text-soft);
+}
+
+.Sidebar-pill {
+  padding: 8px 9px;
+  border-radius: 14px;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent),
+    rgba(3, 7, 18, 0.98);
+  border: 1px solid rgba(148, 163, 253, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 9px;
+  box-shadow: var(--shadow-soft-sm);
+}
+
+.Sidebar-pill-text {
+  color: var(--text-soft);
+  line-height: 1.3;
+}
+
+.Sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  flex: 1;
+}
+
+.Sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 9px;
+  border-radius: 11px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 10px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.Sidebar-nav-item.is-subtle {
+  opacity: 0.5;
+}
+
+.Sidebar-nav-item:hover {
+  background: rgba(17, 24, 39, 0.98);
+  border-color: rgba(148, 163, 253, 0.16);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.Sidebar-nav-item.is-active {
+  background: var(--accent-soft);
+  border-color: rgba(56, 189, 248, 0.9);
+  color: var(--accent);
+  box-shadow: 0 14px 42px rgba(15, 23, 42, 1);
+}
+
+.Sidebar-nav-icon {
+  width: 14px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.Sidebar-nav-label {
+  white-space: nowrap;
+}
+
+.Sidebar-footer {
+  padding: 8px 6px 6px;
+  font-size: 8px;
+  color: var(--text-soft);
+  border-radius: 10px;
+  border: 1px solid rgba(31, 41, 55, 0.92);
+  background: rgba(2, 6, 23, 0.98);
+}
+
+.Sidebar-footer-label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 7px;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.Sidebar-footer-text {
+  line-height: 1.4;
+}

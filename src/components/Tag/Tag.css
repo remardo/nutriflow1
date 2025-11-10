@@ -1,0 +1,35 @@
+
+.Tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px 3px;
+  border-radius: 999px;
+  font-size: 9px;
+  border: 1px solid rgba(148, 163, 253, 0.35);
+  color: var(--accent);
+  background: rgba(15, 23, 42, 0.96);
+  gap: 4px;
+}
+
+.Tag--subtle {
+  background: transparent;
+  border-style: dashed;
+  color: var(--text-soft);
+}
+
+.Tag--green {
+  border-color: rgba(22, 163, 74, 0.8);
+  color: #4ade80;
+}
+.Tag--orange {
+  border-color: rgba(249, 115, 22, 0.9);
+  color: #fdba74;
+}
+.Tag--red {
+  border-color: rgba(248, 113, 113, 0.9);
+  color: #fecaca;
+}
+.Tag--blue {
+  border-color: rgba(59, 130, 246, 0.9);
+  color: #bfdbfe;
+}

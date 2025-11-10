@@ -1,0 +1,39 @@
+
+.DataList {
+  display: grid;
+  gap: 6px 14px;
+  font-size: 9px;
+}
+
+.DataList--cols-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.DataList--cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.DataList--cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.DataList-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.DataList-label {
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 7px;
+}
+
+.DataList-value {
+  color: var(--text-main);
+}
+
+.DataList-value.is-muted {
+  color: var(--text-soft);
+}

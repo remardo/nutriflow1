@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: nutriflow-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nutriflow
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - nutriflow-db-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nutriflow-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/nutriflow?schema=public
+      JWT_SECRET: change-me-in-prod
+      LOG_LEVEL: info
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+
+volumes:
+  nutriflow-db-data:

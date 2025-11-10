@@ -1,0 +1,171 @@
+
+.MenuBuilderRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.MenuBuilder-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.MenuBuilder-days {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.MenuBuilder-day {
+  padding: 3px 7px 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(75, 85, 99, 0.96);
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.MenuBuilder-day.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: rgba(56, 189, 248, 0.96);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.96);
+}
+
+.MenuBuilder-day.is-ghost {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.MenuBuilder-summary {
+  display: flex;
+  gap: 6px;
+  font-size: 8px;
+  color: var(--accent);
+}
+
+.MenuBuilder-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.6fr);
+  gap: 10px;
+  font-size: 8px;
+}
+
+.MenuBuilder-meals {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.MenuBuilder-meal {
+  padding: 4px 6px;
+  border-radius: 9px;
+  background: rgba(3, 7, 18, 0.98);
+  border: 1px solid rgba(17, 24, 39, 0.96);
+}
+
+.MenuBuilder-meal-type {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.MenuBuilder-meal-desc {
+  font-size: 9px;
+  color: #e5e7eb;
+}
+
+.MenuBuilder-meal-macros {
+  font-size: 7px;
+  color: var(--text-soft);
+  margin-top: 1px;
+}
+
+.MenuBuilder-add {
+  padding: 4px 6px;
+  border-radius: 9px;
+  border: 1px dashed rgba(75, 85, 99, 0.96);
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 8px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.MenuBuilder-add:hover {
+  background: rgba(9, 9, 20, 0.98);
+  color: var(--accent);
+}
+
+.MenuBuilder-ai {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.MenuBuilder-ai-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  letter-spacing: 0.06em;
+}
+
+.MenuBuilder-ai-textarea {
+  min-height: 40px;
+  border-radius: 9px;
+  border: 1px solid rgba(31, 41, 55, 0.96);
+  background: rgba(3, 7, 18, 0.98);
+  color: var(--text-main);
+  padding: 4px 5px;
+  font-size: 8px;
+  resize: vertical;
+}
+
+.MenuBuilder-ai-draft {
+  padding: 4px 5px;
+  border-radius: 9px;
+  border: 1px solid rgba(17, 24, 39, 0.96);
+  background: rgba(2, 6, 23, 0.98);
+  font-size: 8px;
+  color: var(--text-soft);
+}
+
+.MenuBuilder-ai-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.MenuBuilder-btn {
+  padding: 3px 7px 4px;
+  border-radius: 999px;
+  border: 1px dashed rgba(148, 163, 253, 0.6);
+  background: transparent;
+  font-size: 8px;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.MenuBuilder-btn:hover {
+  background: rgba(9, 9, 20, 0.98);
+  color: var(--accent);
+}
+
+.MenuBuilder-btn--primary {
+  border-style: solid;
+  border-color: rgba(56, 189, 248, 0.96);
+  color: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .MenuBuilder-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

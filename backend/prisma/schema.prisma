@@ -1,0 +1,198 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  OWNER
+  ADMIN
+  NUTRITIONIST
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  hashedPassword String
+  role           UserRole  @default(OWNER)
+  tenantId       String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  clients        Client[]
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+
+  fullName  String
+  status    ClientStatus @default(ACTIVE)
+  goal      String?
+  notes     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  norms         ClientNutrientNorms?
+  meals         Meal[]
+  dayStats      ClientDayStats[]
+  labTests      LabTest[]
+  menuAssignments MenuAssignment[]
+  events        Event[]
+}
+
+enum ClientStatus {
+  ACTIVE
+  PAUSED
+}
+
+model ClientNutrientNorms {
+  id              String   @id @default(cuid())
+  client          Client   @relation(fields: [clientId], references: [id])
+  clientId        String   @unique
+
+  kcalMin         Int?
+  kcalMax         Int?
+  proteinGrams    Int?
+  fatGramsMin     Int?
+  fatGramsMax     Int?
+  carbsGramsMin   Int?
+  carbsGramsMax   Int?
+  fiberGrams      Int?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Meal {
+  id          String   @id @default(cuid())
+  client      Client   @relation(fields: [clientId], references: [id])
+  clientId    String
+
+  occurredAt  DateTime
+  description String
+
+  kcal        Int?
+  protein     Int?
+  fat         Int?
+  carbs       Int?
+  fiber       Int?
+
+  createdAt   DateTime @default(now())
+}
+
+model ClientDayStats {
+  id          String   @id @default(cuid())
+  client      Client   @relation(fields: [clientId], references: [id])
+  clientId    String
+
+  date        DateTime
+
+  kcal        Int?
+  protein     Int?
+  fat         Int?
+  carbs       Int?
+  fiber       Int?
+
+  kcalCoverage    Float?
+  proteinCoverage Float?
+  fiberCoverage   Float?
+
+  riskFlags       String[] // сериализованный список флагов рисков
+
+  createdAt   DateTime @default(now())
+
+  @@unique([clientId, date])
+}
+
+model LabMarkerRef {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  name      String
+  unit      String
+  low       Float?
+  high      Float?
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("lab_marker_refs")
+}
+
+model LabTest {
+  id          String   @id @default(cuid())
+  client      Client   @relation(fields: [clientId], references: [id])
+  clientId    String
+
+  takenAt     DateTime
+  type        String
+  marker      String
+  value       Float
+  unit        String
+  status      LabStatus
+
+  createdAt   DateTime @default(now())
+}
+
+enum LabStatus {
+  LOW
+  NORMAL
+  HIGH
+}
+
+model MenuTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  focus       String? // например: "дефицит ферритина"
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  assignments MenuAssignment[]
+}
+
+model MenuAssignment {
+  id            String        @id @default(cuid())
+  client        Client        @relation(fields: [clientId], references: [id])
+  clientId      String
+  menuTemplate  MenuTemplate  @relation(fields: [menuTemplateId], references: [id])
+  menuTemplateId String
+
+  startDate     DateTime
+  endDate       DateTime?
+
+  isActive      Boolean       @default(true)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  client      Client?  @relation(fields: [clientId], references: [id])
+  clientId    String?
+
+  title       String
+  description String?
+  type        String   // call, checkup, analysis-reminder etc.
+  scheduledAt DateTime
+  channel     String?  // zoom, phone, etc.
+
+  createdAt   DateTime @default(now())
+}
+
+model BillingPlan {
+  id          String   @id @default(cuid())
+  name        String
+  maxClients  Int
+  features    String[] // список включенных модулей
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

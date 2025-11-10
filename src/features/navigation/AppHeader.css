@@ -1,0 +1,65 @@
+
+.AppHeaderRoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.AppHeader-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.AppHeader-title {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #e5e7eb;
+}
+
+.AppHeader-sub {
+  font-size: 9px;
+  color: var(--text-soft);
+}
+
+.AppHeader-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.AppHeader-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.AppHeader-btn {
+  padding: 4px 10px 5px;
+  font-size: 9px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(148, 163, 253, 0.4);
+  background: rgba(2, 6, 23, 0.96);
+  color: var(--accent);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.AppHeader-btn:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.98);
+}
+
+.AppHeader-btn--primary {
+  background: linear-gradient(to right, #38bdf8, #4f46e5);
+  color: #020817;
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.AppHeader-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.98);
+}

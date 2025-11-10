@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: nutriflow_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nutriflow
+      POSTGRES_PASSWORD: nutriflow
+      POSTGRES_DB: nutriflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - nutriflow-db-data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nutriflow_backend
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgres://nutriflow:nutriflow@db:5432/nutriflow
+      JWT_SECRET: change-me-in-prod
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nutriflow_frontend
+    depends_on:
+      - backend
+    environment:
+      # Используется в nginx.conf/JS как базовый URL API
+      NF_API_URL: http://backend:4000/api
+    ports:
+      - "3000:80"
+
+volumes:
+  nutriflow-db-data:

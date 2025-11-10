@@ -1,0 +1,35 @@
+
+.PillTabs {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background: rgba(9, 9, 20, 0.98);
+  border: 1px solid rgba(148, 163, 253, 0.25);
+  gap: 4px;
+}
+
+.PillTabs--sm {
+  padding: 2px;
+}
+
+.PillTabs-item {
+  padding: 4px 9px 5px;
+  border-radius: var(--radius-pill);
+  border: none;
+  font-size: 10px;
+  color: var(--text-soft);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.PillTabs--sm .PillTabs-item {
+  font-size: 9px;
+  padding: 3px 7px 4px;
+}
+
+.PillTabs-item.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.9);
+}

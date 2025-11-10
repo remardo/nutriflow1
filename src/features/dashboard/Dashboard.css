@@ -1,0 +1,259 @@
+
+.DashboardRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.Dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+  grid-auto-rows: minmax(0, auto);
+  gap: 14px;
+}
+
+.Dashboard-grid > :nth-child(3),
+.Dashboard-grid > :nth-child(4) {
+  grid-column: span 2;
+}
+
+@media (max-width: 1080px) {
+  .Dashboard-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.Dashboard-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.Dashboard-kpi span {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.Dashboard-kpi label {
+  font-size: 8px;
+  color: var(--text-soft);
+}
+
+.Dashboard-kpi-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.Dashboard-kpi-item {
+  flex: 1;
+}
+
+.Dashboard-kpi-label {
+  font-size: 8px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.Dashboard-kpi-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.Dashboard-kpi-value.warn {
+  color: var(--accent-danger);
+}
+
+.Dashboard-clients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.Dashboard-client {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background: rgba(3, 7, 18, 0.98);
+  border: 1px solid rgba(31, 41, 55, 0.96);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 9px;
+}
+
+.Dashboard-client:hover {
+  border-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.98);
+  transform: translateY(-1px);
+}
+
+.Dashboard-client-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.Dashboard-client-name {
+  font-size: 10px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.Dashboard-client-status {
+  margin-left: 6px;
+  padding: 1px 6px 2px;
+  border-radius: 999px;
+  font-size: 7px;
+  border: 1px solid rgba(148, 163, 253, 0.3);
+  color: var(--text-soft);
+}
+
+.Dashboard-client-goal {
+  font-size: 8px;
+  color: var(--text-soft);
+}
+
+.Dashboard-client-metrics {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.Dashboard-chip {
+  padding: 2px 6px 3px;
+  border-radius: 999px;
+  font-size: 7px;
+  border: 1px solid rgba(75, 85, 99, 0.96);
+}
+
+.Dashboard-chip--green {
+  border-color: rgba(22, 163, 74, 0.9);
+  color: #22c55e;
+}
+.Dashboard-chip--orange {
+  border-color: rgba(249, 115, 22, 0.96);
+  color: #fb923c;
+}
+.Dashboard-chip--red {
+  border-color: rgba(248, 113, 113, 0.96);
+  color: #fca5a5;
+}
+
+.Dashboard-events {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 8px;
+}
+
+.Dashboard-event {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  padding: 4px 5px;
+  border-radius: 9px;
+  background: rgba(3, 7, 18, 0.98);
+  border: 1px solid rgba(31, 41, 55, 0.96);
+}
+
+.Dashboard-event-icon {
+  font-size: 10px;
+  color: var(--accent);
+  width: 12px;
+}
+
+.Dashboard-event-main {
+  flex: 1;
+}
+
+.Dashboard-event-label {
+  font-size: 9px;
+  color: #e5e7eb;
+}
+
+.Dashboard-event-sub {
+  font-size: 7px;
+  color: var(--text-soft);
+}
+
+.Dashboard-event-status {
+  display: flex;
+  align-items: center;
+}
+
+.Dashboard-notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 8px;
+}
+
+.Dashboard-notification {
+  display: flex;
+  gap: 5px;
+  padding: 4px 5px;
+  border-radius: 9px;
+  background: rgba(3, 7, 18, 0.98);
+  border: 1px solid rgba(17, 24, 39, 0.96);
+}
+
+.Dashboard-notification-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+.Dashboard-notification-dot[data-severity='info'] {
+  background: #38bdf8;
+}
+.Dashboard-notification-dot[data-severity='warning'] {
+  background: #fb923c;
+}
+.Dashboard-notification-dot[data-severity='critical'] {
+  background: #f97373;
+}
+
+.Dashboard-notification-main {
+  flex: 1;
+}
+
+.Dashboard-notification-text {
+  font-size: 8px;
+  color: #e5e7eb;
+}
+
+.Dashboard-notification-sub {
+  font-size: 7px;
+  color: var(--text-soft);
+}
+
+.Dashboard-architecture {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+  font-size: 8px;
+}
+
+.Dashboard-arch-title {
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+
+.Dashboard-architecture ul {
+  margin: 0;
+  padding-left: 10px;
+  list-style: disc;
+  color: var(--text-soft);
+}

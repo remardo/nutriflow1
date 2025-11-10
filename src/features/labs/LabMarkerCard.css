@@ -1,0 +1,150 @@
+
+.LabMarkerCard {
+  padding: 6px 7px;
+  border-radius: 10px;
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.04), transparent),
+    rgba(3, 7, 18, 0.98);
+  border: 1px solid rgba(17, 24, 39, 0.96);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 8px;
+}
+
+.LabMarkerCard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.LabMarkerCard-title {
+  font-size: 9px;
+  font-weight: 500;
+  color: #e5e7eb;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.LabMarkerCard-unit {
+  font-size: 7px;
+  color: var(--text-soft);
+}
+
+.LabMarkerCard-lastRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 6px;
+  align-items: center;
+}
+
+.LabMarkerCard-lastValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.LabMarkerCard-lastValue span {
+  font-size: 7px;
+  color: var(--text-soft);
+}
+
+.LabMarkerCard-ref {
+  font-size: 7px;
+  color: var(--text-soft);
+}
+
+.LabMarkerCard-meta {
+  font-size: 7px;
+  color: var(--text-soft);
+  text-align: right;
+}
+
+.LabMarkerCard-trendRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 7px;
+  color: var(--text-soft);
+}
+
+.LabMarkerCard-trend {
+  color: var(--accent);
+}
+
+.LabMarkerCard-chart {
+  margin-top: 2px;
+}
+
+.LabMarkerCard-chartLine {
+  position: relative;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(2, 6, 23, 0.98);
+  border: 1px solid rgba(24, 35, 54, 0.96);
+  overflow: hidden;
+}
+
+.LabMarkerCard-refBand {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.06), transparent);
+  opacity: 0.7;
+}
+
+.LabMarkerCard-refLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(148, 163, 253, 0.5);
+}
+.LabMarkerCard-refLine.Low {
+  top: 20%;
+}
+.LabMarkerCard-refLine.High {
+  bottom: 20%;
+}
+
+.LabMarkerCard-dotWrapper {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.LabMarkerCard-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px #020817, 0 4px 10px rgba(15, 23, 42, 0.96);
+}
+.LabMarkerCard-dot--ok {
+  background: #22c55e;
+}
+.LabMarkerCard-dot--low {
+  background: #fb923c;
+}
+.LabMarkerCard-dot--high {
+  background: #f97373;
+}
+
+.LabMarkerCard-dotLabel {
+  font-size: 6px;
+  color: var(--text-soft);
+}
+
+.LabMarkerCard-note {
+  font-size: 7px;
+  color: var(--text-soft);
+  margin-top: 2px;
+}
