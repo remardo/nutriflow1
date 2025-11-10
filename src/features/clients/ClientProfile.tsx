@@ -20,6 +20,7 @@ import {
   getClientLabSummary,
   LabSummaryItemDto,
 } from '../../api/labs';
+import { createClientEvent } from '../../api/events';
 
 type ClientProfileProps = {
   clientId: string | null;
@@ -716,28 +717,23 @@ export const ClientProfile: React.FC<ClientProfileProps> = ({
               }
 
               try {
-                const res = await fetch(
-                  `http://localhost:4000/api/clients/${clientId}/events`,
-                  {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      title,
-                      scheduledAt,
-                      type,
-                      channel,
-                    }),
-                  }
-                );
-                if (!res.ok) {
-                  // eslint-disable-next-line no-console
-                  console.error('Failed to create event');
-                  return;
-                }
-                const created = await res.json();
+                const created = await createClientEvent(clientId, {
+                  title,
+                  scheduledAt,
+                  type,
+                  channel,
+                });
+                const normalized = {
+                  id: created.id,
+                  title: created.title,
+                  description: created.description ?? null,
+                  type: created.type,
+                  scheduledAt: created.scheduledAt,
+                  channel: created.channel ?? null,
+                };
                 setProfile({
                   ...client,
-                  events: [...client.events, created],
+                  events: [...client.events, normalized],
                 });
                 form.reset();
               } catch (err) {

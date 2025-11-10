@@ -1,4 +1,12 @@
 import { http } from './http';
+import {
+  demoCreateClientLabsBatch,
+  demoGetClientLabMarkers,
+  demoGetClientLabSeries,
+  demoGetClientLabSummary,
+  demoGetClientLabs,
+  shouldUseDemoFallback,
+} from './demoMode';
 
 export type LabStatus = 'LOW' | 'NORMAL' | 'HIGH';
 
@@ -60,10 +68,21 @@ export async function getClientLabs(
       ? `/clients/${clientId}/labs?${qs}`
       : `/clients/${clientId}/labs`;
 
-  return http<LabTestDto[]>({
-    url,
-    method: 'GET',
-  });
+  try {
+    return await http<LabTestDto[]>({
+      url,
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      const all = demoGetClientLabs(clientId);
+      const start = params?.offset ?? 0;
+      const end =
+        params?.limit != null ? start + params.limit : undefined;
+      return all.slice(start, end);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -73,11 +92,18 @@ export async function createClientLabsBatch(
   clientId: string,
   items: CreateLabBatchItem[]
 ): Promise<LabTestDto[]> {
-  return http<LabTestDto[]>({
-    url: `/clients/${clientId}/labs/batch`,
-    method: 'POST',
-    data: { items },
-  });
+  try {
+    return await http<LabTestDto[]>({
+      url: `/clients/${clientId}/labs/batch`,
+      method: 'POST',
+      data: { items },
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoCreateClientLabsBatch(clientId, items);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -86,11 +112,18 @@ export async function createClientLabsBatch(
 export async function getClientLabMarkers(
   clientId: string
 ): Promise<LabMarkerDto[]> {
-  const res = await http<{ markers: LabMarkerDto[] }>({
-    url: `/clients/${clientId}/labs/markers`,
-    method: 'GET',
-  });
-  return res.markers;
+  try {
+    const res = await http<{ markers: LabMarkerDto[] }>({
+      url: `/clients/${clientId}/labs/markers`,
+      method: 'GET',
+    });
+    return res.markers;
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoGetClientLabMarkers(clientId);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -101,10 +134,19 @@ export async function getClientLabSeries(
   markerCode: string
 ): Promise<LabSeriesPointDto[]> {
   const code = markerCode.trim().toUpperCase();
-  return http<LabSeriesPointDto[]>({
-    url: `/clients/${clientId}/labs/series?marker=${encodeURIComponent(code)}`,
-    method: 'GET',
-  });
+  try {
+    return await http<LabSeriesPointDto[]>({
+      url: `/clients/${clientId}/labs/series?marker=${encodeURIComponent(
+        code
+      )}`,
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoGetClientLabSeries(clientId, code);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -113,9 +155,16 @@ export async function getClientLabSeries(
 export async function getClientLabSummary(
   clientId: string
 ): Promise<LabSummaryItemDto[]> {
-  const res = await http<{ markers: LabSummaryItemDto[] }>({
-    url: `/clients/${clientId}/labs/summary`,
-    method: 'GET',
-  });
-  return res.markers;
+  try {
+    const res = await http<{ markers: LabSummaryItemDto[] }>({
+      url: `/clients/${clientId}/labs/summary`,
+      method: 'GET',
+    });
+    return res.markers;
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoGetClientLabSummary(clientId);
+    }
+    throw err;
+  }
 }

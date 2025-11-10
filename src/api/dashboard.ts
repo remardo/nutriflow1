@@ -1,4 +1,5 @@
 import { http } from './http';
+import { demoFetchDashboardSummary, shouldUseDemoFallback } from './demoMode';
 
 export type DashboardSummaryEvent = {
   id: string;
@@ -29,8 +30,15 @@ export type DashboardSummary = {
 };
 
 export async function fetchDashboardSummary(): Promise<DashboardSummary> {
-  return http<DashboardSummary>({
-    url: '/dashboard/summary',
-    method: 'GET',
-  });
+  try {
+    return await http<DashboardSummary>({
+      url: '/dashboard/summary',
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchDashboardSummary();
+    }
+    throw err;
+  }
 }

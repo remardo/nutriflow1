@@ -1,4 +1,10 @@
 import { http } from './http';
+import {
+  demoCreateClientEvent,
+  demoFetchClientEvents,
+  demoFetchUpcomingEvents,
+  shouldUseDemoFallback,
+} from './demoMode';
 
 export type EventDto = {
   id: string;
@@ -17,10 +23,17 @@ export type EventDto = {
 export async function fetchClientEvents(
   clientId: string
 ): Promise<EventDto[]> {
-  return http<EventDto[]>({
-    url: `/clients/${clientId}/events`,
-    method: 'GET',
-  });
+  try {
+    return await http<EventDto[]>({
+      url: `/clients/${clientId}/events`,
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchClientEvents(clientId);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -37,11 +50,18 @@ export async function createClientEvent(
     description?: string;
   }
 ): Promise<EventDto> {
-  return http<EventDto>({
-    url: `/clients/${clientId}/events`,
-    method: 'POST',
-    data: payload,
-  });
+  try {
+    return await http<EventDto>({
+      url: `/clients/${clientId}/events`,
+      method: 'POST',
+      data: payload,
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoCreateClientEvent(clientId, payload);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -49,8 +69,15 @@ export async function createClientEvent(
  * Ближайшие события для Dashboard.
  */
 export async function fetchUpcomingEvents(): Promise<EventDto[]> {
-  return http<EventDto[]>({
-    url: '/events/upcoming',
-    method: 'GET',
-  });
+  try {
+    return await http<EventDto[]>({
+      url: '/events/upcoming',
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchUpcomingEvents();
+    }
+    throw err;
+  }
 }

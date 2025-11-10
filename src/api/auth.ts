@@ -1,12 +1,17 @@
+import {
+  demoAuthenticate,
+  demoGetCurrentUser,
+  isDemoModeEnabled,
+  shouldUseDemoFallback,
+  DEMO_TOKEN,
+} from './demoMode';
+
 const API_BASE =
-  // Vite-подобная переменная окружения (frontend)
   ((typeof import.meta !== 'undefined' &&
     (import.meta as any).env &&
     (import.meta as any).env.VITE_API_URL) as string | undefined) ||
-  // Глобальный URL (может быть выставлен в docker/jest через globalThis.__NF_API_URL__)
   (typeof globalThis !== 'undefined' &&
     (globalThis as any).__NF_API_URL__) ||
-  // Fallback для тестов/Node-среды: process.env.*
   ((typeof process !== 'undefined' &&
     (process as any).env &&
     ((process as any).env.NF_API_URL ||
@@ -43,7 +48,7 @@ interface LoginResponse {
   token: string;
 }
 
-export async function login(email: string, password: string): Promise<string> {
+async function loginRemote(email: string, password: string): Promise<string> {
   const res = await fetch(`${API_BASE}/auth/login`, {
     method: 'POST',
     headers: {
@@ -53,16 +58,34 @@ export async function login(email: string, password: string): Promise<string> {
   });
 
   if (!res.ok) {
-    throw new Error('Неверный email или пароль');
+    if (res.status === 401) {
+      throw new Error('Неверный email или пароль');
+    }
+    const err = new Error('Auth service недоступен');
+    (err as any).status = res.status;
+    throw err;
   }
 
   const data = (await res.json()) as LoginResponse;
   if (!data.token) {
-    throw new Error('Некорректный ответ сервера');
+    throw new Error('Сервис вернул пустой токен');
   }
 
   setToken(data.token);
   return data.token;
+}
+
+export async function login(email: string, password: string): Promise<string> {
+  try {
+    return await loginRemote(email, password);
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      const demo = demoAuthenticate(email, password);
+      setToken(demo.token);
+      return demo.token;
+    }
+    throw err;
+  }
 }
 
 export interface MeResponse {
@@ -73,6 +96,9 @@ export interface MeResponse {
 
 export async function getMe(): Promise<MeResponse> {
   const token = getToken();
+  if (token === DEMO_TOKEN && isDemoModeEnabled()) {
+    return demoGetCurrentUser();
+  }
   const res = await fetch(`${API_BASE}/auth/me`, {
     headers: token
       ? {
@@ -86,6 +112,9 @@ export async function getMe(): Promise<MeResponse> {
   }
 
   if (!res.ok) {
+    if (shouldUseDemoFallback(res)) {
+      return demoGetCurrentUser();
+    }
     throw new Error('Failed to load current user');
   }
 

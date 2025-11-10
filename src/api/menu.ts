@@ -1,5 +1,11 @@
 import { http } from './http';
 import type { ClientProfile } from './clients';
+import {
+  demoAssignMenu,
+  demoFetchClientMenu,
+  demoFetchMenuTemplates,
+  shouldUseDemoFallback,
+} from './demoMode';
 
 export type MenuTemplateDto = {
   id: string;
@@ -31,10 +37,17 @@ export type ClientMenuResponse = {
  * GET /api/menu-templates
  */
 export async function fetchMenuTemplates(): Promise<MenuTemplateDto[]> {
-  return http<MenuTemplateDto[]>({
-    url: '/menu-templates',
-    method: 'GET',
-  });
+  try {
+    return await http<MenuTemplateDto[]>({
+      url: '/menu-templates',
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchMenuTemplates();
+    }
+    throw err;
+  }
 }
 
 /**
@@ -43,10 +56,17 @@ export async function fetchMenuTemplates(): Promise<MenuTemplateDto[]> {
 export async function fetchClientMenu(
   clientId: string
 ): Promise<ClientMenuResponse> {
-  return http<ClientMenuResponse>({
-    url: `/clients/${clientId}/menu`,
-    method: 'GET',
-  });
+  try {
+    return await http<ClientMenuResponse>({
+      url: `/clients/${clientId}/menu`,
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchClientMenu(clientId);
+    }
+    throw err;
+  }
 }
 
 /**
@@ -63,9 +83,16 @@ export async function assignMenu(
   if (startDate) body.startDate = startDate;
   if (endDate) body.endDate = endDate;
 
-  return http<ClientProfile>({
-    url: `/clients/${clientId}/menu-assignment`,
-    method: 'POST',
-    data: body,
-  });
+  try {
+    return await http<ClientProfile>({
+      url: `/clients/${clientId}/menu-assignment`,
+      method: 'POST',
+      data: body,
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoAssignMenu(clientId, menuTemplateId, startDate, endDate);
+    }
+    throw err;
+  }
 }

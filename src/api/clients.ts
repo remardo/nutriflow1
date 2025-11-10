@@ -1,4 +1,10 @@
 import { http } from './http';
+import {
+  demoFetchClients,
+  demoFetchClientProfile,
+  demoUpdateClientNorms,
+  shouldUseDemoFallback,
+} from './demoMode';
 
 export type ClientFlag = 'ok' | 'proteinLow' | 'fiberLow' | 'overKcal';
 
@@ -73,17 +79,31 @@ export type ClientProfile = {
 };
 
 export async function fetchClients(): Promise<ClientSummary[]> {
-  return http<ClientSummary[]>({
-    url: '/clients',
-    method: 'GET',
-  });
+  try {
+    return await http<ClientSummary[]>({
+      url: '/clients',
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchClients();
+    }
+    throw err;
+  }
 }
 
 export async function fetchClientProfile(id: string): Promise<ClientProfile> {
-  return http<ClientProfile>({
-    url: `/clients/${id}/profile`,
-    method: 'GET',
-  });
+  try {
+    return await http<ClientProfile>({
+      url: `/clients/${id}/profile`,
+      method: 'GET',
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoFetchClientProfile(id);
+    }
+    throw err;
+  }
 }
 
 export type ClientNormsPayload = {
@@ -105,9 +125,16 @@ export async function updateClientNorms(
   clientId: string,
   payload: ClientNormsPayload
 ): Promise<ClientProfile> {
-  return http<ClientProfile>({
-    url: `/clients/${clientId}/norms`,
-    method: 'PUT',
-    data: payload,
-  });
+  try {
+    return await http<ClientProfile>({
+      url: `/clients/${clientId}/norms`,
+      method: 'PUT',
+      data: payload,
+    });
+  } catch (err) {
+    if (shouldUseDemoFallback(err)) {
+      return demoUpdateClientNorms(clientId, payload);
+    }
+    throw err;
+  }
 }
