@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "commonjs",
-    "lib": ["DOM", "ES2019"],
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["vite/client", "jest", "@testing-library/jest-dom", "node"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/test", "**/*.test.ts", "**/*.test.tsx"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

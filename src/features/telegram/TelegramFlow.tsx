@@ -38,7 +38,7 @@ export const TelegramFlow: React.FC = () => {
 
   const handleSend = () => {
     if (!input.trim()) return;
-    const updated = [
+    const updated: Message[] = [
       ...messages,
       { from: 'client', text: input.trim() },
       {

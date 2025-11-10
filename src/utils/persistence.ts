@@ -1,3 +1,29 @@
+type StorageLike = Pick<
+  Storage,
+  'setItem' | 'getItem' | 'removeItem' | 'clear'
+>;
+
+const createMemoryStorage = (): StorageLike => {
+  const store = new Map<string, string>();
+  return {
+    setItem: (key, value) => {
+      store.set(key, value);
+    },
+    getItem: (key) => (store.has(key) ? store.get(key)! : null),
+    removeItem: (key) => {
+      store.delete(key);
+    },
+    clear: () => {
+      store.clear();
+    },
+  };
+};
+
+const storage: StorageLike =
+  typeof window !== 'undefined' && window.localStorage
+    ? window.localStorage
+    : createMemoryStorage();
+
 type Persistence = {
   setItem(key: string, value: string): Promise<void>;
   getItem(key: string): Promise<string | null>;
@@ -6,16 +32,16 @@ type Persistence = {
 };
 
 export const persistence: Persistence = {
-  setItem(key, value) {
-    return window.persistentStorage.setItem(key, value);
+  async setItem(key, value) {
+    storage.setItem(key, value);
   },
-  getItem(key) {
-    return window.persistentStorage.getItem(key);
+  async getItem(key) {
+    return storage.getItem(key);
   },
-  removeItem(key) {
-    return window.persistentStorage.removeItem(key);
+  async removeItem(key) {
+    storage.removeItem(key);
   },
-  clear() {
-    return window.persistentStorage.clear();
+  async clear() {
+    storage.clear();
   },
 };
