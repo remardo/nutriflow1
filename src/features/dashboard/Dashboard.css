@@ -2,14 +2,14 @@
 .DashboardRoot {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 
 .Dashboard-grid {
   display: grid;
   grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
   grid-auto-rows: minmax(0, auto);
-  gap: 14px;
+  gap: 18px;
 }
 
 .Dashboard-grid > :nth-child(3),
@@ -31,13 +31,13 @@
 }
 
 .Dashboard-kpi span {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--accent);
 }
 
 .Dashboard-kpi label {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--text-soft);
 }
 
@@ -53,14 +53,14 @@
 }
 
 .Dashboard-kpi-label {
-  font-size: 8px;
+  font-size: 11px;
   color: var(--text-soft);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .Dashboard-kpi-value {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--accent);
 }
@@ -80,14 +80,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 12px;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
   background: rgba(3, 7, 18, 0.98);
   border: 1px solid rgba(31, 41, 55, 0.96);
   cursor: pointer;
   transition: all var(--transition-fast);
-  font-size: 9px;
+  font-size: 13px;
 }
 
 .Dashboard-client:hover {
@@ -103,22 +103,22 @@
 }
 
 .Dashboard-client-name {
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 500;
   color: #e5e7eb;
 }
 
 .Dashboard-client-status {
   margin-left: 6px;
-  padding: 1px 6px 2px;
+  padding: 2px 8px 3px;
   border-radius: 999px;
-  font-size: 7px;
+  font-size: 10px;
   border: 1px solid rgba(148, 163, 253, 0.3);
   color: var(--text-soft);
 }
 
 .Dashboard-client-goal {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--text-soft);
 }
 
@@ -129,9 +129,9 @@
 }
 
 .Dashboard-chip {
-  padding: 2px 6px 3px;
+  padding: 4px 8px 5px;
   border-radius: 999px;
-  font-size: 7px;
+  font-size: 11px;
   border: 1px solid rgba(75, 85, 99, 0.96);
 }
 
@@ -151,24 +151,24 @@
 .Dashboard-events {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 8px;
+  gap: 6px;
+  font-size: 12px;
 }
 
 .Dashboard-event {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: flex-start;
-  padding: 4px 5px;
-  border-radius: 9px;
+  padding: 8px 9px;
+  border-radius: 12px;
   background: rgba(3, 7, 18, 0.98);
   border: 1px solid rgba(31, 41, 55, 0.96);
 }
 
 .Dashboard-event-icon {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--accent);
-  width: 12px;
+  width: 18px;
 }
 
 .Dashboard-event-main {
@@ -176,12 +176,12 @@
 }
 
 .Dashboard-event-label {
-  font-size: 9px;
+  font-size: 13px;
   color: #e5e7eb;
 }
 
 .Dashboard-event-sub {
-  font-size: 7px;
+  font-size: 11px;
   color: var(--text-soft);
 }
 
@@ -193,15 +193,15 @@
 .Dashboard-notifications {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  font-size: 8px;
+  gap: 6px;
+  font-size: 12px;
 }
 
 .Dashboard-notification {
   display: flex;
-  gap: 5px;
-  padding: 4px 5px;
-  border-radius: 9px;
+  gap: 8px;
+  padding: 8px 9px;
+  border-radius: 12px;
   background: rgba(3, 7, 18, 0.98);
   border: 1px solid rgba(17, 24, 39, 0.96);
 }
@@ -227,28 +227,28 @@
 }
 
 .Dashboard-notification-text {
-  font-size: 8px;
+  font-size: 13px;
   color: #e5e7eb;
 }
 
 .Dashboard-notification-sub {
-  font-size: 7px;
+  font-size: 11px;
   color: var(--text-soft);
 }
 
 .Dashboard-architecture {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 4px;
-  font-size: 8px;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 12px;
 }
 
 .Dashboard-arch-title {
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .Dashboard-architecture ul {
