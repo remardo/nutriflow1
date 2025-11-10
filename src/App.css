@@ -20,6 +20,7 @@
   --transition-fast: 0.16s ease-out;
   --transition-med: 0.22s ease-out;
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, -system-ui, sans-serif;
+  --ui-scale: clamp(1, calc(0.75 + 0.00035 * 100vw), 1.2);
 }
 
 *,
@@ -43,8 +44,8 @@ body {
 }
 
 .AppRoot {
-  min-height: 100vh;
-  width: 100%;
+  min-height: calc(100vh / var(--ui-scale));
+  width: calc(100% / var(--ui-scale));
   display: flex;
   background:
     radial-gradient(900px 900px at -10% -10%, rgba(56, 189, 248, 0.15), transparent),
@@ -52,6 +53,8 @@ body {
     radial-gradient(900px 900px at 50% 110%, rgba(34, 197, 94, 0.04), transparent),
     #020817;
   color: var(--text-main);
+  transform: scale(var(--ui-scale));
+  transform-origin: top left;
 }
 
 ::-webkit-scrollbar {
