@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.6fr);
   gap: 10px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .BillingPage-current {
@@ -23,20 +23,20 @@
 }
 
 .BillingPage-label {
-  font-size: 7px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .BillingPage-plan {
-  font-size: 10px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--accent);
 }
 
 .BillingPage-subtext {
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
 }
 
@@ -44,7 +44,7 @@
   display: flex;
   gap: 6px;
   margin-top: 3px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   color: var(--accent);
 }
 

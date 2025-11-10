@@ -10,7 +10,7 @@
   align-items: center;
   gap: 8px;
   margin-bottom: 6px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .EventsPage-btn {
@@ -37,7 +37,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .EventsPage-item {
@@ -51,7 +51,7 @@
 }
 
 .EventsPage-icon {
-  font-size: 10px;
+  font-size: var(--font-size-xs);
   color: var(--accent);
 }
 
@@ -60,12 +60,12 @@
 }
 
 .EventsPage-title {
-  font-size: 9px;
+  font-size: var(--font-size-sm);
   color: #e5e7eb;
 }
 
 .EventsPage-sub {
-  font-size: 7px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
 }
 

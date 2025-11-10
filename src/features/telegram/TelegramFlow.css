@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.6fr);
   gap: 10px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .TelegramFlow-chat {
@@ -66,7 +66,7 @@
   border: 1px solid rgba(31, 41, 55, 0.96);
   background: rgba(2, 6, 23, 0.98);
   color: var(--text-main);
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .TelegramFlow-send {
@@ -75,7 +75,7 @@
   border: 1px solid rgba(148, 163, 253, 0.8);
   background: var(--accent-soft);
   color: var(--accent);
-  font-size: 10px;
+  font-size: var(--font-size-xs);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -97,7 +97,7 @@
 }
 
 .TelegramFlow-sectionTitle {
-  font-size: 9px;
+  font-size: var(--font-size-sm);
   color: var(--accent);
   font-weight: 500;
 }
@@ -108,11 +108,11 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .TelegramFlow-steps code {
-  font-size: 7px;
+  font-size: var(--font-size-xs);
   color: var(--accent);
 }
 

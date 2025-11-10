@@ -16,7 +16,7 @@
   padding: 4px 9px 5px;
   border-radius: var(--radius-pill);
   border: none;
-  font-size: 10px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
   background: transparent;
   cursor: pointer;
@@ -24,7 +24,7 @@
 }
 
 .PillTabs--sm .PillTabs-item {
-  font-size: 9px;
+  font-size: var(--font-size-xs);
   padding: 3px 7px 4px;
 }
 

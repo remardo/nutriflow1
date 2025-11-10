@@ -24,7 +24,7 @@
   border: 1px solid rgba(75, 85, 99, 0.96);
   background: transparent;
   color: var(--text-soft);
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -44,7 +44,7 @@
 .MenuBuilder-summary {
   display: flex;
   gap: 6px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   color: var(--accent);
 }
 
@@ -52,7 +52,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.6fr);
   gap: 10px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
 }
 
 .MenuBuilder-meals {
@@ -69,19 +69,19 @@
 }
 
 .MenuBuilder-meal-type {
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accent);
 }
 
 .MenuBuilder-meal-desc {
-  font-size: 9px;
+  font-size: var(--font-size-sm);
   color: #e5e7eb;
 }
 
 .MenuBuilder-meal-macros {
-  font-size: 7px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
   margin-top: 1px;
 }
@@ -92,7 +92,7 @@
   border: 1px dashed rgba(75, 85, 99, 0.96);
   background: transparent;
   color: var(--text-soft);
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: left;
@@ -110,7 +110,7 @@
 }
 
 .MenuBuilder-ai-label {
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
   color: var(--text-soft);
   letter-spacing: 0.06em;
@@ -123,7 +123,7 @@
   background: rgba(3, 7, 18, 0.98);
   color: var(--text-main);
   padding: 4px 5px;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   resize: vertical;
 }
 
@@ -132,7 +132,7 @@
   border-radius: 9px;
   border: 1px solid rgba(17, 24, 39, 0.96);
   background: rgba(2, 6, 23, 0.98);
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
 }
 
@@ -147,7 +147,7 @@
   border-radius: 999px;
   border: 1px dashed rgba(148, 163, 253, 0.6);
   background: transparent;
-  font-size: 8px;
+  font-size: var(--font-size-xs);
   color: var(--text-soft);
   cursor: pointer;
   transition: all var(--transition-fast);
