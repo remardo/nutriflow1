@@ -28,6 +28,13 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -37,6 +44,7 @@ body {
 
 .AppRoot {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   background:
     radial-gradient(900px 900px at -10% -10%, rgba(56, 189, 248, 0.15), transparent),
